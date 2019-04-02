@@ -1,3 +1,19 @@
 .test {
     background-color: yellow;
 }
+
+body {
+    /* background-image: url("../images/background.jpg"); */
+    background-repeat: no-repeat;
+    font-family: 'Heebo', sans-serif;
+}
+
+div {
+    /* border: 2px black solid; */
+}
+
+.gem {
+    max-width: 100px;
+    max-height: 100px;
+    vertical-align: middle;
+}
