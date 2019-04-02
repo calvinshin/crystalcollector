@@ -15,37 +15,41 @@
     <link rel="stylesheet" href="assets/css/css.css">
 </head>
 <body>
-<div id="gameWindow" class="container">
-this is a test 
-<p id="test">This is me testing to make sure I remember js</p>
+<div id="gameWindow" class="container p-2">
     <div class="row">
-        <div id="mainwindow" class="col col-9">
+        <div id="mainwindow" class="col-md-9">
             <div id="gems" class="row">
-                <div class="col-3" align="center">
-                    <img id="gemone" class="gem" src="assets/images/CFFossil.png">
+                <!-- Dynamically create the divs and the gems -->
+                <!-- <div class="col-3" align="center">
+                    <img id="gemone" class="gem" src="assets/images/fossil.png">
                 </div>
                 <div class="col-3" align="center">
-                    <img id="gemtwo" class="gem" src="assets/images/Snail_(City_Folk).png">
+                    <img id="gemtwo" class="gem" src="assets/images/snail.png">
                 </div>
                 <div class="col-3" align="center">
-                    <img id="gemthree" class="gem" src="assets/images/Blue_Marlin_(City_Folk).png">
+                    <img id="gemthree" class="gem" src="assets/images/marlin.png">
                 </div>
                 <div class="col-3" align="center">
-                    <img id="gemfour" class="gem" src="assets/images/The_Nightwatch.jpg">
-                </div>
+                    <img id="gemfour" class="gem" src="assets/images/The Nightwatch.jpg">
+                </div> -->
             </div>
             <!-- where points, the magic number, wins, losses, etc. will show -->
             <div id="gamedata" class="row">
-
+                <div>
+                    <p><element id="magicnumberelement"> </element></p>
+                    <p><element id="crystalsumelement"> </element></p>
+                </div>
             </div>
         </div>
-        <div id="sidemenu" class="col col-3">
-            <div id="chatbubble" class="row">
-                There should be content here!
-                <p>like a lot!</p>
-            </div>
-            <div class="row" align="center">
-                <img id="shopkeeper" src="assets/images/Reese.png">
+        <div id="sidemenu" class="col-md-3">
+            <div class="row">
+                <div id="chatbubble" class="col-md-12 col-8">
+                    <!-- I accidentally put the magic number and sum here and it looked nice... -->
+                    Hey there, villager! Are you ready to sell us some treasure?
+                </div>
+                <div id="shopkeeperpane" class="col-md-12 col-4">
+                    <img id="shopkeeper" src="assets/images/Reese.png" class="img-fluid mx-auto d-block">
+                </div>
             </div>
         </div>
     </div>
