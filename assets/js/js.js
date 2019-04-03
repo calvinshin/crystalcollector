@@ -7,7 +7,9 @@ var game = {
     losses : 0,
     shopkeerObject : {
         isRandomChatter : false,
-        imageArray : ["./assets/images/Marlin.png", "./assets/images/Reese.png"]
+        chatterCountdown : 4,
+        imageArray : ["./assets/images/Marlin.png", "./assets/images/Reese.png"],
+        randomText : ["I wonder if Tom will stop by today... we've been behind on rent", "I'm surprised we haven't gone broke from all the things we buy from you!", "The cake is a lie.", "Thanks for being such a great mayor!", "We haven't seen you in a while, mayor. Thanks for dropping by.", "Isabella keeps the place tidy when you're off on adventures."]
     },
     // arrays that are helpful for the game
     crystalValueArray : [],
@@ -24,6 +26,15 @@ var game = {
         game.magicNumber = 0;
         game.crystalSum = 0;
         game.newCrystal();
+        // shopkeeper elements. Chatbubble needs to be now so the gameon can check to see if text needs to be overwritten
+        game.shopkeerObject.isRandomChatter = true;
+        $("#chatbubble").text("Click on items to sell us stuff. Try to sell a total value equal to the magic number!");
+
+        if(game.isGameOn === true) {
+            $("#chatbubble").text("Looks like you're starting over! Maybe you'll have better luck this time.");
+            game.losses += 1;
+            $("#losses").text("Losses : " + game.losses);
+        }
         game.magicNumber = Math.ceil(Math.random() * (game.gameSize.length + 1)) * $("#gemOne").attr("value") +
             Math.ceil(Math.random() * (game.gameSize.length + 1)) * $("#gemTwo").attr("value") +
             Math.ceil(Math.random() * (game.gameSize.length + 1)) * $("#gemThree").attr("value") +
@@ -34,9 +45,7 @@ var game = {
         $("#crystalsumelement").text("Crystal Sum : " + game.crystalSum);
         $("#wins").text("Wins : " + game.wins);
         $("#losses").text("Losses : " + game.losses);
-        // shopkeeper elements
-        game.shopkeerObject.isRandomChatter = true;
-        $("#chatbubble").text("Try to sell us stuff equal to the magic number!");
+
         // console.log("Game has been started!")
         // console.log(game.crystalSum);
         // console.log(game);
@@ -97,18 +106,29 @@ $(document).on("click", ".gemclass", function() {
         game.crystalSum = game.crystalSum + parseInt($(this).attr("value"));
         console.log(game.crystalSum);
         $("#crystalsumelement").text("Crystal Sum : " + game.crystalSum);
+        // Random Chatter
+        if(game.shopkeerObject.isRandomChatter = true) {
+            game.shopkeerObject.chatterCountdown -= 1;
+            if(game.shopkeerObject.chatterCountdown === 0) {
+                game.shopkeerObject.chatterCountdown = Math.floor(Math.random() * 4 + 4)
+                $("#chatbubble").text(game.shopkeerObject.randomText[Math.floor(Math.random() * game.shopkeerObject.randomText.length)]);
+            }
+        };
+        // Game win conditions
         if(game.crystalSum >= game.magicNumber) {
             if(game.crystalSum === game.magicNumber) {
                 game.shopkeerObject.isRandomChatter = false;
-                $("#chatbubble").text("Hey, you did it! Just show me you can do it one more time!");
+                $("#chatbubble").text("Hey, you did it! Show me you can do it one more time!");
                 game.wins += 1;
                 $("#wins").text("Wins : " + game.wins);
+                game.isGameOn = false;
             }
             else {
                 game.shopkeerObject.isRandomChatter = false;
                 $("#chatbubble").text("Aww, you were close! Maybe you should try again!");
                 game.losses += 1;
                 $("#losses").text("Losses : " + game.losses);
+                game.isGameOn = false;
             }
         }
     }
