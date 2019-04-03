@@ -3,9 +3,15 @@ var game = {
     // variables for the game
     crystalSum : 0,
     magicNumber : 0,
+    wins : 0,
+    losses : 0,
+    shopkeerObject : {
+        isRandomChatter : false,
+        imageArray : ["./assets/images/Marlin.png", "./assets/images/Reese.png"]
+    },
     // arrays that are helpful for the game
-    crystalValueArray : {},
-    gameSize : [1, 2, 3, 4, 5, 6],
+    crystalValueArray : [],
+    gameSize : [1, 2, 3, 4],
     crystalImageArray : ["./assets/images/marlin.png", "./assets/images/fossil.png", "./assets/images/snail.png", "./assets/images/The Nightwatch.jpg"],
     // Game isvariables
     isGameOn : false,
@@ -26,6 +32,11 @@ var game = {
         game.isGameOn = true;
         $("#magicnumberelement").text("Magic Number : " + game.magicNumber);
         $("#crystalsumelement").text("Crystal Sum : " + game.crystalSum);
+        $("#wins").text("Wins : " + game.wins);
+        $("#losses").text("Losses : " + game.losses);
+        // shopkeeper elements
+        game.shopkeerObject.isRandomChatter = true;
+        $("#chatbubble").text("Try to sell us stuff equal to the magic number!");
         // console.log("Game has been started!")
         // console.log(game.crystalSum);
         // console.log(game);
@@ -86,6 +97,20 @@ $(document).on("click", ".gemclass", function() {
         game.crystalSum = game.crystalSum + parseInt($(this).attr("value"));
         console.log(game.crystalSum);
         $("#crystalsumelement").text("Crystal Sum : " + game.crystalSum);
+        if(game.crystalSum >= game.magicNumber) {
+            if(game.crystalSum === game.magicNumber) {
+                game.shopkeerObject.isRandomChatter = false;
+                $("#chatbubble").text("Hey, you did it! Just show me you can do it one more time!");
+                game.wins += 1;
+                $("#wins").text("Wins : " + game.wins);
+            }
+            else {
+                game.shopkeerObject.isRandomChatter = false;
+                $("#chatbubble").text("Aww, you were close! Maybe you should try again!");
+                game.losses += 1;
+                $("#losses").text("Losses : " + game.losses);
+            }
+        }
     }
 })
 

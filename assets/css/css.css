@@ -17,3 +17,114 @@ div {
     max-height: 100px; */
     /* vertical-align: middle; */
 }
+
+/* There are three different sizes for the game based on the window size, so there needs to be three different media elements */
+/*  */
+@media (min-width: 768px) {
+    /* body{
+        background-color: yellow;
+    } */
+    /* Shopkeeper element */
+        #chatbubble {
+            height: calc(30vh);
+            margin-bottom: 30px;
+            padding: 15px;
+        }
+        .speech-bubble {
+            position: relative;
+            background: #00aabb;
+            border-radius: .4em;
+        }
+        .speech-bubble:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border: 25px solid transparent;
+            border-top-color: #00aabb;
+            border-bottom: 0;
+            border-right: 0;
+            margin-left: -12.5px;
+            margin-bottom: -25px;
+        }
+        #shopkeeperpane {
+            height: 40vh;
+        }
+        #shopkeeper {
+            max-height: 40vh;
+        }
+}
+
+@media (max-width: 767px) and (min-width: 576px) {
+    /* body{
+        background-color: green;
+    } */
+    /* Shopkeeper element */
+        #chatbubble {
+            height: 20vh;
+            padding: 15px;
+        }
+        .speech-bubble {
+            position: relative;
+            background: #00aabb;
+            border-radius: .4em;
+        }
+        .speech-bubble:after {
+            content: '';
+            position: absolute;
+            right: 0;
+            top: 50%;
+            width: 0;
+            height: 0;
+            border: 25px solid transparent;
+            border-left-color: #00aabb;
+            border-right: 0;
+            border-bottom: 0;
+            margin-top: -12.5px;
+            margin-right: -25px;
+        }
+        #shopkeeperpane {
+            height: 30vh;
+        }
+        #shopkeeper {
+            max-height: 30vh;
+        }
+}
+
+@media (max-width: 575px) {
+    /* body{
+        background-color: lightblue;
+    } */
+        /* Shopkeeper element */
+        #chatbubble {
+            height: 25vh;
+            padding: 15px;
+        }
+        .speech-bubble {
+            position: relative;
+            background: #00aabb;
+            border-radius: .4em;
+        }
+        .speech-bubble:after {
+            content: '';
+            position: absolute;
+            right: 0;
+            top: 50%;
+            width: 0;
+            height: 0;
+            border: 25px solid transparent;
+            border-left-color: #00aabb;
+            border-right: 0;
+            border-top: 0;
+            margin-top: -8px;
+            margin-right: -16px;
+        }
+        #shopkeeperpane {
+            height: 25vh;
+        }
+        #shopkeeper {
+            max-height: 25vh;
+        }
+}
