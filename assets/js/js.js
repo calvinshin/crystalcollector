@@ -1,4 +1,11 @@
 // Create an object called game to set all functions within the game...
+// Two things I want to do:
+// Difficulty adjustments for the game Easy or Hard (higher P)
+// use a sprite sheet to show images (lower P)
+
+
+
+
 var game = {
     // variables for the game
     crystalSum : 0,
@@ -11,9 +18,12 @@ var game = {
         imageArray : ["./assets/images/Marlin.png", "./assets/images/Reese.png"],
         randomText : ["I wonder if Tom will stop by today... we've been behind on rent", "I'm surprised we haven't gone broke from all the things we buy from you!", "The cake is a lie.", "Thanks for being such a great mayor!", "We haven't seen you in a while, mayor. Thanks for dropping by.", "Isabella keeps the place tidy when you're off on your adventures.", "Rumor has it that this game is really easy if there's something worth 10 Bells..."]
     },
+    // Can change difficulty to challenging
+    difficulty : "standard",
     // arrays that are helpful for the game
     crystalValueArray : [],
-    // The values don't actually matter.... since the calculation of the magic number is based on the length of the array + 1
+    // The values don't actually matter.... since the calculation of the magic number is based on the length of the array + 1.
+    // Shows that the maximum number of each item for optimal solution is 4.
     gameSize : [1, 2, 3, 4],
     crystalImageArray : ["./assets/images/1.png", "./assets/images/2.png", "./assets/images/3.png", "./assets/images/4.png", 
     "./assets/images/5.png", "./assets/images/6.png", "./assets/images/7.png", "./assets/images/8.png",
@@ -66,6 +76,9 @@ var game = {
         for(i=1; i<5; i++) {
             // Create a div with a class of col-3 and another blank class for now
             var gemDiv = $("<div>");
+            if(game.difficulty = "challenging") {
+                gemDiv.text("x5");
+            };
             gemDiv.addClass("col-6 col-sm-3 gemcolclass");
             // Create an image with a unique ID based on the loop description
             var gemImage = $("<img>");
@@ -76,6 +89,7 @@ var game = {
             // Do the thing to get the value
             var arrayValue = Math.floor(Math.random() * game.crystalValueArray.length);
             gemImage.attr("value", game.crystalValueArray[arrayValue]);
+            gemImage.attr("quantity", 5);
             // Splice the value so each thing has a different value
             game.crystalValueArray.splice(arrayValue, 1);
             // Insert the image into the div

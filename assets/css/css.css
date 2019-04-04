@@ -3,7 +3,7 @@
 }
 
 body {
-    background-image: url("../images/background.jpg");
+    /* background-image: url("../images/background.jpg"); */
     background-repeat: no-repeat;
     font-family: 'Heebo', sans-serif;
 }
@@ -12,6 +12,9 @@ div {
     /* border: 2px black solid; */
 }
 
+
+/* Gem CSS */
+
 .gemclass {
     /* max-width: 100px;
     max-height: 100px; */
@@ -19,11 +22,17 @@ div {
     /* background-color: yellow; */
     /* padding: 20px; */
     /* filter: brightness(120%); */
+    -webkit-filter: drop-shadow(0px 0px 4px white);
 }
 
-.glow {
-    -webkit-filter: drop-shadow(0px 0px 14px yellow) brightness(150%);
+.gemclass:hover {
+    -webkit-filter: drop-shadow(0px 0px 14px yellow) brightness(130%);
 }
+
+
+
+/* Game Window CSS */
+
 
 /* There are three different sizes for the game based on the window size, so there needs to be three different media elements */
 /*  */
