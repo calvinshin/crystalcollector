@@ -15,7 +15,7 @@
     <link rel="stylesheet" href="assets/css/css.css">
 </head>
 <body>
-<div id="gameWindow" class="container p-2">
+<div id="gameWindow" class="container">
     <div class="row">
         <div id="mainwindow" class="col-md-9">
             <div id="gems" class="row">
@@ -35,7 +35,7 @@
             </div>
             <!-- where points, the magic number, wins, losses, etc. will show -->
             <div id="gamedata" class="row">
-                <div>
+                <div class="p-2">
                     <p><element id="magicnumberelement"> </element></p>
                     <p><element id="crystalsumelement"> </element></p>
                     <p><element id="wins"> </element></p>
@@ -44,7 +44,7 @@
             </div>
         </div>
         <div id="sidemenu" class="col-md-3">
-            <div class="row">
+            <div class="row px-2">
                 <div id="chatbubble" class="col-md-12 col-8 speech-bubble">
                     <!-- I accidentally put the magic number and sum here and it looked nice... -->
                     Hey there, villager! Are you ready to sell us some treasure? Click on me to start.

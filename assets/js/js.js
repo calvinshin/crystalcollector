@@ -9,19 +9,24 @@ var game = {
         isRandomChatter : false,
         chatterCountdown : 4,
         imageArray : ["./assets/images/Marlin.png", "./assets/images/Reese.png"],
-        randomText : ["I wonder if Tom will stop by today... we've been behind on rent", "I'm surprised we haven't gone broke from all the things we buy from you!", "The cake is a lie.", "Thanks for being such a great mayor!", "We haven't seen you in a while, mayor. Thanks for dropping by.", "Isabella keeps the place tidy when you're off on adventures."]
+        randomText : ["I wonder if Tom will stop by today... we've been behind on rent", "I'm surprised we haven't gone broke from all the things we buy from you!", "The cake is a lie.", "Thanks for being such a great mayor!", "We haven't seen you in a while, mayor. Thanks for dropping by.", "Isabella keeps the place tidy when you're off on your adventures.", "Rumor has it that this game is really easy if there's something worth 10 Bells..."]
     },
     // arrays that are helpful for the game
     crystalValueArray : [],
+    // The values don't actually matter.... since the calculation of the magic number is based on the length of the array + 1
     gameSize : [1, 2, 3, 4],
-    crystalImageArray : ["./assets/images/marlin.png", "./assets/images/fossil.png", "./assets/images/snail.png", "./assets/images/The Nightwatch.jpg"],
-    // Game isvariables
+    crystalImageArray : ["./assets/images/1.png", "./assets/images/2.png", "./assets/images/3.png", "./assets/images/4.png", 
+    "./assets/images/5.png", "./assets/images/6.png", "./assets/images/7.png", "./assets/images/8.png",
+    "./assets/images/9.png", "./assets/images/10.png", "./assets/images/11.png", "./assets/images/12.png",
+    "./assets/images/13.png", "./assets/images/14.png", "./assets/images/15.png", "./assets/images/16.png", "./assets/images/17.png"],
+        // Game isvariables
     isGameOn : false,
     // functions required for the game
     gameStart : function() {
         game.crystalValueArray = [7, 8, 9, 10, 11, 12];
-        game.crystalImageArray = ["./assets/images/marlin.png", "./assets/images/fossil.png", "./assets/images/snail.png", "./assets/images/The Nightwatch.jpg"];
+        game.crystalImageLength = 17;
         game.crystalNumberArray = ["Zero", "One", "Two", "Three", "Four"]
+        game.shuffle(game.crystalImageArray);
         $("#gems").text("");
         game.magicNumber = 0;
         game.crystalSum = 0;
@@ -79,6 +84,14 @@ var game = {
             $("#gems").append(gemDiv);
         }
     },
+    shuffle : function(array) {
+        for(i=0; i<array.length; i++) {
+            var randIndex = Math.floor(Math.random() * array.length);
+            var tempValue = array[i];
+            array[i] = array[randIndex];
+            array[randIndex] = tempValue;
+        }
+    }
 // The this set the game's values.
     // testFunction : function() {
     //     this.color = "";
@@ -93,18 +106,17 @@ var game = {
 
 console.log(game);
 
-
 $("#shopkeeper").click(function() {
     game.gameStart();
 })
 
 // When you dynamically create things, the onclick needs something to attach to in order for it to exist. This script attaches as soon as the page is run/gets to this point
 $(document).on("click", ".gemclass", function() {
-    console.log("this click worked!")
+    // console.log("this click worked!")
     // console.log(Math.ceil(Math.random() * (game.gameSize.length + 1)) * $("#gemOne").attr("value"))
     if(game.isGameOn === true) {
         game.crystalSum = game.crystalSum + parseInt($(this).attr("value"));
-        console.log(game.crystalSum);
+        // console.log(game.crystalSum);
         $("#crystalsumelement").text("Crystal Sum : " + game.crystalSum);
         // Random Chatter
         if(game.shopkeerObject.isRandomChatter = true) {
@@ -129,6 +141,7 @@ $(document).on("click", ".gemclass", function() {
                 game.losses += 1;
                 $("#losses").text("Losses : " + game.losses);
                 game.isGameOn = false;
+                console.log(game)
             }
         }
     }
