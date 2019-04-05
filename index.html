@@ -17,6 +17,18 @@
 <body>
 <div id="gamewindow" class="container">
     <div class="row">
+        <div id="optionswindow" class="hidden">
+            <div id="owclose">×</div>
+            <div id="owheader">Options</div>
+            <div id="ownotes">Please note, changing any settings will restart the game!</div>
+            <div id="difficulty">
+                <h5>Difficulty</h5>
+                <div class="optioncenter">
+                    <element id="diffstandard" class="optionbutton difficultyactive" difficulty="standard">Standard</element>
+                    <element id="diffchallenging" class="optionbutton difficultyinactive" difficulty="challenging">Challenging</element>
+                </div>
+            </div>
+        </div>
         <div id="mainwindow" class="col-md-9">
             <div id="gems" class="row">
                 <!-- Dynamically create the divs and the gems -->
@@ -35,12 +47,17 @@
             </div>
             <!-- where points, the magic number, wins, losses, etc. will show -->
             <div id="gamedata" class="row">
-                <div id="gamedatainside" class="p-2">
+                <!-- <div id="gamedatainside" class="p-2"> -->
+                <div class="col-6 col-sm-12">
                     <element id="magicnumberelement"> </element>
                     <element id="crystalsumelement"> </element>
+                </div>
+                <div class="col-6 col-sm-12">
                     <element id="wins"> </element>
                     <element id="losses"> </element>
+                    <element id="optionselement"></element>
                 </div>
+                <!-- </div> -->
             </div>
         </div>
         <div id="sidemenu" class="col-md-3">
@@ -51,6 +68,7 @@
                 </div>
                 <div id="shopkeeperpane" class="col-md-12 col-4">
                     <img id="shopkeeper" src="assets/images/Reese.png" class="img-fluid mx-auto d-block">
+                    <div id="optionsbutton">Options</div>
                 </div>
             </div>
         </div>

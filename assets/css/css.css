@@ -6,14 +6,100 @@ body {
     background-image: url("../images/background.jpg");
     background-repeat: no-repeat;
     font-family: 'Heebo', sans-serif;
+    position: relative;
 }
 
 div {
+    /* testing frame by using borders */
     /* border: 2px black solid; */
 }
 
+h4 {
+    margin: 0px;
+}
+
+.hidden {
+    display: none;
+}
+
+/* options window */
+#optionswindow {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    height: 60vh;
+    width: 60vw;
+    background-color: #FFD409;
+    z-index: 3;
+    border-radius: 10px;
+}
+
+#owclose {
+    position: absolute;
+    right: calc(12px);
+    top: calc(0px);
+    font-size: xx-large;
+}
+
+#owheader {
+    position: absolute;
+    right: 50%;
+    top: 30px;
+    transform: translate(50%, 0%);
+    font-size: xx-large;
+}
+
+#ownotes {
+    position: absolute;
+    left: 0px;
+    bottom: 0px;
+    font-size: small;
+    padding: 0px 10px 10px 10px;
+}
+
+#difficulty {
+    position: absolute;
+    left: 20px;
+    top: calc(60px + 5vh);
+    width: calc(100% - 40px);
+}
+
+.optioncenter {
+    align: center;
+    text-align: center
+}
+
+/* https://www.w3schools.com/CSS/tryit.asp?filename=trycss_inline-block_span1 */
+.optionbutton {
+    background-color: white;
+    padding: 10px;
+    width: 120px;
+    margin: 0px 10px;
+    display: inline-block;
+    border-radius: 2px;
+    border: 3px #FFD409 solid;
+}
+
+.optionbutton {
+}
+
+.difficultyinactive:hover {
+    border: 3px gray solid;
+    color: gray;
+}
+
+.difficultyactive {
+    background-color: rgb(46, 165, 46);
+}
 
 /* Gem CSS */
+#gems {
+    position: relative;
+}
+.gemcolclass {
+    position: relative;
+}
 
 .gemclass {
     /* max-width: 100px;
@@ -23,35 +109,88 @@ div {
     /* padding: 20px; */
     /* filter: brightness(120%); */
     -webkit-filter: drop-shadow(0px 0px 4px white);
-    margin: auto;
+    /* margin: auto !important; */
 }
 
 .gemclass:hover {
-    -webkit-filter: drop-shadow(0px 0px 14px yellow) brightness(130%);
+    -webkit-filter: drop-shadow(0px 0px 14px #FFD103) brightness(130%);
 }
 
+.gemnumber {
+    position: absolute;
+    right: calc(50% - 50px);
+    top: 0%;
+}
 
+.clearfix::after {
+    content: "";
+    clear: both;
+    display: table;
+  }
 
 /* Game Window CSS */
 #mainwindow {
-    background-color: white;
+    /* background-color: white; */
     border-radius: 10px;
     -webkit-filter: drop-shadow(0px 0px 1px gray);
         /* background-image: url("../images/background.jpg"); */
-
+    max-height: 550px;
 }
 
 #gamedata{
     position: relative;
 }
 
-#magicnumberelement{
+#magicnumberelement {
     position: absolute;
-    top: 10%;
+    top: calc(50% - 35px);
     left: 50%;
-    transform: translate(-50%, 0%);
+    transform: translate(-50%, -50%);
+    text-align: center;
+    line-height: 1.6;
+    width: 100%;
 }
 
+#crystalsumelement {
+    position: absolute;
+    top: calc(50% + 35px);
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    line-height: 1.6;
+    width: 100%;
+}
+
+#wins {
+    position: absolute;
+    bottom: calc(5% + 20px);
+    right: 10px;
+    /* transform: translate(-50%, 0%); */
+    text-align: center;
+    line-height: 1.6;
+    /* width: 100%; */
+}
+
+#losses {
+    position: absolute;
+    bottom: calc(5% + 0px);
+    right: 10px;
+    /* transform: translate(-50%, 0%); */
+    text-align: center;
+    line-height: 1.6;
+    /* width: 100%; */
+}
+
+#optionsbutton {
+    position: absolute;
+    bottom: 0px;
+    right: 2px;
+    background-color: rgba(255, 255, 255, 0.5);
+    /* backdrop-filter: opacity(40%); */
+    border-radius: 2px;
+    /* filter: opacity(40%); */
+    font-weight: bold;
+}
 
 /* There are three different sizes for the game based on the window size, so there needs to be three different media elements */
 /*  */
@@ -73,6 +212,7 @@ div {
         }
         #gamedata {
             height: calc(90vh - 40px);
+            max-height: calc(550px - 10vh - 20px);
         }
     /* Shopkeeper element */
         #chatbubble {
@@ -125,7 +265,7 @@ div {
             max-height: 10vh;
         }
         #gamedata {
-            height: calc(30vh - 40px);
+            height: calc(60vh - 60px);
         }
     /* Shopkeeper element */
         #chatbubble {
@@ -177,7 +317,8 @@ div {
             max-height: 15vh;
         }
         #gamedata {
-            height: calc(45vh - 40px);
+            height: calc(45vh - 60px);
+            max-height: calc(550px - 15vh - 60px);
         }
         /* Shopkeeper element */
         #chatbubble {
@@ -208,5 +349,26 @@ div {
         }
         #shopkeeper {
             max-height: 25vh;
+        }
+
+        /* Changing the wins and losses to be the same as magic number at small sizes */
+        #wins{
+            position: absolute;
+            top: calc(50% - 10px);
+            left: 50%;
+            transform: translate(-50%, 0%);
+            text-align: center;
+            line-height: 1.6;
+            width: 100%;
+        }
+        
+        #losses{
+            position: absolute;
+            top: calc(50% + 10px);
+            left: 50%;
+            transform: translate(-50%, 0%);
+            text-align: center;
+            line-height: 1.6;
+            width: 100%;
         }
 }

@@ -12,14 +12,14 @@ var game = {
     magicNumber : 0,
     wins : 0,
     losses : 0,
-    shopkeerObject : {
+    shopkeeperObject : {
         isRandomChatter : false,
         chatterCountdown : 4,
-        imageArray : ["./assets/images/Marlin.png", "./assets/images/Reese.png"],
+        imageArray : ["./assets/images/Cyrus.png", "./assets/images/Reese.png"],
         randomText : ["I wonder if Tom will stop by today... we've been behind on rent", "I'm surprised we haven't gone broke from all the things we buy from you!", "The cake is a lie.", "Thanks for being such a great mayor!", "We haven't seen you in a while, mayor. Thanks for dropping by.", "Isabella keeps the place tidy when you're off on your adventures.", "Rumor has it that this game is really easy if there's something worth 10 Bells..."]
     },
     // Can change difficulty to challenging or stay as standard
-    difficulty : "challenging",
+    difficulty : "standard",
     // arrays that are helpful for the game
     crystalValueArray : [],
     // The values don't actually matter.... since the calculation of the magic number is based on the length of the array + 1.
@@ -42,8 +42,13 @@ var game = {
         game.crystalSum = 0;
         game.newCrystal();
         // shopkeeper elements. Chatbubble needs to be now so the gameon can check to see if text needs to be overwritten
-        game.shopkeerObject.isRandomChatter = true;
+        game.shopkeeperObject.isRandomChatter = true;
+        $("#shopkeeper").attr("src", game.shopkeeperObject.imageArray[Math.floor(Math.random() * 2)]);
+        game.shopkeeper
         $("#chatbubble").text("Click on items to sell us stuff. Try to sell a total value equal to the magic number!");
+
+        // Update the main window with styles to look like a screen
+        $("#mainwindow").css("backgroundColor", "white");
 
         if(game.isGameOn === true) {
             $("#chatbubble").text("Looks like you're starting over! Maybe you'll have better luck this time.");
@@ -56,8 +61,8 @@ var game = {
             Math.ceil(Math.random() * (game.gameSize.length + 1)) * $("#gemFour").attr("value")
             // console.log(game.magicNumber)
         game.isGameOn = true;
-        $("#magicnumberelement").text("Magic Number : " + game.magicNumber);
-        $("#crystalsumelement").text("Crystal Sum : " + game.crystalSum);
+        $("#magicnumberelement").html("<h4>Magic Number</h4>" + game.magicNumber);
+        $("#crystalsumelement").html("<h4>Crystal Sum</h4>" + game.crystalSum);
         $("#wins").text("Wins : " + game.wins);
         $("#losses").text("Losses : " + game.losses);
 
@@ -82,7 +87,7 @@ var game = {
             gemImage.attr("id", "gem"+game.crystalNumberArray[i]);
             // Assign the various properties required: image, category, value
             gemImage.attr("src", game.crystalImageArray[i-1]);
-            gemImage.addClass("gemclass img-fluid mx-auto d-block float-left");
+            gemImage.addClass("gemclass img-fluid mx-auto d-block");
             // Do the thing to get the value
             var arrayValue = Math.floor(Math.random() * game.crystalValueArray.length);
             gemImage.attr("value", game.crystalValueArray[arrayValue]);
@@ -95,6 +100,7 @@ var game = {
             if(game.difficulty === "challenging") {
                 var gemQuantity = $("<div>");
                 gemQuantity.attr("id", "quantitygem"+game.crystalNumberArray[i]);
+                gemQuantity.addClass("gemnumber")
                 gemQuantity.text("x5");
                 gemDiv.append(gemQuantity);
             };
@@ -128,6 +134,34 @@ $("#shopkeeper").click(function() {
     game.gameStart();
 })
 
+$(document).on("click", ".difficultyinactive", function() {
+    // Set the game.difficulty to this.difficulty
+    game.difficulty = $(this).attr("difficulty");
+    // Set the other button to inactive
+    // console.log($(this).attr("difficulty"));
+    if($(this).attr("difficulty") === "challenging"){
+        $("#diffstandard").removeClass("difficultyactive");
+        $("#diffstandard").addClass("difficultyinactive");
+    }
+    else {
+        $("#diffchallenging").removeClass("difficultyactive");
+        $("#diffchallenging").addClass("difficultyinactive");
+    }
+    // Set the new button to active
+    $(this).removeClass("difficultyinactive")
+    $(this).addClass("difficultyactive")
+    game.gameStart();
+    // Starts a new game
+})
+
+$(document).on("click", "#owclose", function() {
+    $("#optionswindow").addClass("hidden");
+})
+
+$(document).on("click", "#optionsbutton", function() {
+    $("#optionswindow").removeClass("hidden");
+})
+
 // When you dynamically create things, the onclick needs something to attach to in order for it to exist. This script attaches as soon as the page is run/gets to this point
 $(document).on("click", ".gemclass", function() {
     // console.log("this click worked!")
@@ -137,22 +171,22 @@ $(document).on("click", ".gemclass", function() {
         if((game.difficulty === "challenging" && parseInt($(this).attr("quantity"))>0) || game.difficulty ==="standard") {
             // Update the crystal sum with the value
             game.crystalSum = game.crystalSum + parseInt($(this).attr("value"));
-            $("#crystalsumelement").text("Crystal Sum : " + game.crystalSum);
+            $("#crystalsumelement").html("<h4>Crystal Sum</h4>" + game.crystalSum);
 
             // Update the attribute quantity for all games, but only consider it in the logic for challenging games
             $(this).attr("quantity", parseInt($(this).attr("quantity")) - 1);
-            console.log($(this));
-            console.log($(this).attr("wordnumber"));
+            // console.log($(this));
+            // console.log($(this).attr("wordnumber"));
             // Update the div #quantitygemNumber with new text for the value
             // document.getElementById("#quantitygem"+$(this).gemnumber).innerText = "x"+$(this).quantity
             $("#quantitygem"+$(this).attr("wordnumber")).text("x"+$(this).attr("quantity"));
             // console.log(game.crystalSum);
             // Random Chatter
-            if(game.shopkeerObject.isRandomChatter === true) {
-                game.shopkeerObject.chatterCountdown -= 1;
-                if(game.shopkeerObject.chatterCountdown === 0) {
-                    game.shopkeerObject.chatterCountdown = Math.floor(Math.random() * 4 + 4)
-                    $("#chatbubble").text(game.shopkeerObject.randomText[Math.floor(Math.random() * game.shopkeerObject.randomText.length)]);
+            if(game.shopkeeperObject.isRandomChatter === true) {
+                game.shopkeeperObject.chatterCountdown -= 1;
+                if(game.shopkeeperObject.chatterCountdown === 0) {
+                    game.shopkeeperObject.chatterCountdown = Math.floor(Math.random() * 4 + 4)
+                    $("#chatbubble").text(game.shopkeeperObject.randomText[Math.floor(Math.random() * game.shopkeeperObject.randomText.length)]);
                 }
             };
         }
@@ -163,14 +197,14 @@ $(document).on("click", ".gemclass", function() {
             // Game win conditions
         if(game.crystalSum >= game.magicNumber) {
             if(game.crystalSum === game.magicNumber) {
-                game.shopkeerObject.isRandomChatter = false;
+                game.shopkeeperObject.isRandomChatter = false;
                 $("#chatbubble").text("Hey, you did it! Show me you can do it one more time!");
                 game.wins += 1;
                 $("#wins").text("Wins : " + game.wins);
                 game.isGameOn = false;
             }
             else {
-                game.shopkeerObject.isRandomChatter = false;
+                game.shopkeeperObject.isRandomChatter = false;
                 $("#chatbubble").text("Aww, you were so close! Maybe you should try again!");
                 game.losses += 1;
                 $("#losses").text("Losses : " + game.losses);
