@@ -3,7 +3,7 @@
 }
 
 body {
-    /* background-image: url("../images/background.jpg"); */
+    background-image: url("../images/background.jpg");
     background-repeat: no-repeat;
     font-family: 'Heebo', sans-serif;
 }
@@ -23,6 +23,7 @@ div {
     /* padding: 20px; */
     /* filter: brightness(120%); */
     -webkit-filter: drop-shadow(0px 0px 4px white);
+    margin: auto;
 }
 
 .gemclass:hover {
@@ -32,6 +33,24 @@ div {
 
 
 /* Game Window CSS */
+#mainwindow {
+    background-color: white;
+    border-radius: 10px;
+    -webkit-filter: drop-shadow(0px 0px 1px gray);
+        /* background-image: url("../images/background.jpg"); */
+
+}
+
+#gamedata{
+    position: relative;
+}
+
+#magicnumberelement{
+    position: absolute;
+    top: 10%;
+    left: 50%;
+    transform: translate(-50%, 0%);
+}
 
 
 /* There are three different sizes for the game based on the window size, so there needs to be three different media elements */
@@ -42,24 +61,25 @@ div {
     } */
     /* Main Window heights */
         #mainwindow { 
-            height: calc(100vh - 10px);
+            height: calc(100vh - 20px);
             padding-top: 20px;
+            margin: 10px 0px;
         }
         .gemcolclass {
-            height: 20vh;
+            height: 10vh;
         }
         .gemclass {
-            max-height: 20vh;
+            max-height: 10vh;
         }
         #gamedata {
-            height: calc(80vh - 40px);
+            height: calc(90vh - 40px);
         }
     /* Shopkeeper element */
         #chatbubble {
             height: calc(30vh);
             margin-bottom: 30px;
             padding: 15px;
-            margin-top: 20px;
+            margin-top: 11px;
         }
         .speech-bubble {
             position: relative;
@@ -94,14 +114,15 @@ div {
     } */
         /* Main Window heights */
         #mainwindow { 
-            height: calc(70vh - 10px);
+            height: calc(70vh - 40px);
             padding-top: 20px;
+            margin: 10px 10px 20px 10px;
         }
         .gemcolclass {
-            height: 20vh;
+            height: 10vh;
         }
         .gemclass {
-            max-height: 20vh;
+            max-height: 10vh;
         }
         #gamedata {
             height: calc(30vh - 40px);
@@ -145,8 +166,9 @@ div {
     } */
         /* Main Window heights */
         #mainwindow { 
-            height: calc(75vh - 10px);
+            height: calc(75vh - 40px);
             padding-top: 20px;
+            margin: 10px 10px 20px 10px;
         }
         .gemcolclass {
             height: 15vh;
